@@ -3,82 +3,51 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TaskRequest;
+use App\Models\Project;
 use App\Models\Task;
-use Exception;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\View\View;
+use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    public function tasks(): View | RedirectResponse{
-        return view('Tasks.index',[
-            'user' => Auth::user()
+   
+    /**
+     * Store a newly created task in storage.
+     */
+    public function create(TaskRequest $request, Project $project)
+    {
+        $task = $request->validated();
+        $task['project_id'] = $project->id;
+        $task['completed'] = false;
+        $task = Task::create($task);
+
+        return to_route('project.index')
+        ->with([
+            'success' => 'The task '.$task->title.' has been created'
         ]);
     }
 
-    public function form(): View | RedirectResponse {
-        return view('Tasks.form',[
-            'user' => Auth::user(),
-            'task' => new Task()
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(TaskRequest $request, Task $task)
+    {   
+        $task->update($request->validated());
+        return to_route('project.index')
+            ->with([
+                'success' => 'The task '.$task->title.' has been modified',
+            ]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Task $task)
+    {
+        $task->delete();
+
+        return to_route('project.index')
+        ->with([
+            'success' => 'The task '.$task->title.' has been deleted'
         ]);
     }
-
-    public function store(TaskRequest $request): View | RedirectResponse {
-        try{
-            $task = $request->validated();
-            $task['user_id'] = Auth::id();
-            $task = Task::create($task);
-
-            return to_route('tasks')
-            ->with([
-                'success' => 'La tache '.$task->title.' a ete bien cree',
-                'user' => Auth::user()
-            ]);
-        } catch(Exception $e){
-            return back()->withErrors([
-                'errors' => $e->getMessage()
-            ]);
-        }
-    }
-
-    public function update(Task $task): View | RedirectResponse{
-        return view('Tasks.form',[
-            'user' => Auth::user(),
-            'task' => $task
-        ]);
-    }
-
-    public function save(TaskRequest $request, Task $task): View | RedirectResponse {
-        try{
-            $task->update($request->validated());
-
-            return to_route('tasks')
-            ->with([
-                'success' => 'La tache '.$task->title.' a ete bien modifie',
-                'user' => Auth::user()
-            ]);
-        } catch(Exception $e){
-            return back()->withErrors([
-                'errors' => $e->getMessage()
-            ]);
-        }
-    }
-
-    public function delete(Task $task): View | RedirectResponse {
-        try{
-            $task->delete();
-
-            return to_route('tasks')
-            ->with([
-                'success' => 'La tache '.$task->title.' a ete bien supprimer',
-                'user' => Auth::user()
-            ]);
-        } catch(Exception $e){
-            return back()->withErrors([
-                'errors' => $e->getMessage()
-            ]);
-        }
-    }
-    
 }

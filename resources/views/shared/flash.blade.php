@@ -1,10 +1,29 @@
-@if (session('success'))
-    <div class="alert alert-success">{{ session('success') }}</div>
-@endif
-@if ($errors->any())
-    <ul class="list-group m-3">
+<div class="toast-container position-fixed top-0 end-0 p-3">
+    @if (session('success'))
+        <div class="toast show text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Success</strong>       
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                {{ session('success') }}
+            </div>
+        </div>
+    @endif
+    @if ($errors->any())
         @foreach ($errors->all() as $err)
-            <li class="list-group-item text-danger text-center border-danger">{{ $err }}</li>
+            <div class="toast  show text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto">Error</strong>         
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    {{ $err }}
+                </div>
+            </div>
         @endforeach 
-    </ul>
-@endif
+    @endif
+</div>
+
+
+

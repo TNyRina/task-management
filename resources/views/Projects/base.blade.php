@@ -26,20 +26,20 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                    <a href="{{ route('tasks') }}" class="navbar-brand nav-link active">
+                    <a href="{{ route('project.index') }}" class="navbar-brand nav-link active">
                         TNR | Tsisy Atao
                     </a>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <span class="nav-link" data-bs-toggle="modal" data-bs-target="#add_form">
-                                <i class="bi bi-patch-plus"></i> Nouvelle tache
+                                <i class="bi bi-patch-plus"></i> New project
                             </span>
                         </li>
                     </ul>
                     <form class="d-flex" role="search" action="{{ route('logout') }}" method="post">
                         @csrf
                         @method('DELETE')
-                        <button class="register-btn btn btn-outline-dark" type="submit">{{ $user->name }} | Se deconnecter <i class="bi bi-box-arrow-right"></i> </button>
+                        <button class="register-btn btn btn-outline-dark" type="submit">{{ $user->name }} | Log out <i class="bi bi-box-arrow-right"></i> </button>
                     </form>
                 </div>
             </div>
@@ -47,5 +47,16 @@
 
         @yield('content')
     </div>
+
+    {{-- <script>
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+        var toastList = toastElList.map(function (toastEl) {
+            return new bootstrap.Toast(toastEl, autohide=false)
+        })
+
+        toastElList.forEach( toast => {
+            toast.show();
+        });
+    </script> --}}
 </body>
 </html>

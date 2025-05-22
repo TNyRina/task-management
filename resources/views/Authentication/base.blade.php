@@ -29,7 +29,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarTogglerDemo01">
-                    <a href="{{ route('tasks') }}" class="navbar-brand nav-link active">
+                    <a href="{{ route('project.index') }}" class="navbar-brand nav-link active">
                         TNR | Tsisy Atao
                     </a>
                     <div class="d-flex">

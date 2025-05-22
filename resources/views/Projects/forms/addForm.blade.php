@@ -5,7 +5,7 @@
         <h1 class="modal-title fs-5" id="add_formLabel">Nouvelle tache</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form action="{{ route('store') }}" method="post">
+      <form action="{{ route('project.store') }}" method="post">
         @csrf
         <div class="modal-body">
                 
@@ -23,14 +23,15 @@
                 ])
       
                 <input type="hidden" name="completed" value="0">
-              <div class="form-group my-3">
-                <label class="form-label">Delais</label>
-                <input type="date" name="deadline">
-              </div>
-                
-                
-            
-    
+                <div class="form-group my-3">
+                  <label class="form-label">Deadline</label>
+                  <input type="date" name="deadline">
+                </div>
+
+                <div class="form-group my-3">
+                  <label class="form-label">Start</label>
+                  <input type="date" name="start">
+                </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>

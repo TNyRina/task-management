@@ -13,11 +13,15 @@ use Illuminate\View\View;
 
 class AuthController extends Controller
 {
-    public function registerPage(): View{
+    public function registerPage(): View {
         return view('Authentication.register');
     }
 
-    public function register(RegisterRequest $request): View{
+    public function loginPage() : View{
+        return view('Authentication.login');
+    }
+
+    public function register(RegisterRequest $request): View | RedirectResponse{
         try{
             $request = $request->validated();
             $user = User::create([
@@ -28,7 +32,7 @@ class AuthController extends Controller
     
             Auth::login($user);
 
-            return view('Tasks.index',[
+            return view('Projects.index',[
                 'user' => $user
             ]);
         } catch(Exception $e){
@@ -39,19 +43,13 @@ class AuthController extends Controller
         }
     }
 
-    public function loginPage() : View{
-        return view('Authentication.login');
-    }
-
     public function login(LoginRequest $request): View | RedirectResponse{
         try{
             $credentials = $request->validated();
-            if(Auth::attempt($credentials)){
-               
-                return view('Tasks.index',[
+            if(Auth::attempt($credentials))
+                return view('Projects.index',[
                     'user' => Auth::user()
                 ]);
-            }
 
             return back()->withErrors([
                 'password' => 'Identifiant incorrect!'

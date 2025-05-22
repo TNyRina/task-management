@@ -1,7 +1,6 @@
 @php
     $class ??= null;
     $label ??= null;
-    $class ??=  null;
     $name ??= '';
     $value ??= '';
 @endphp

@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -13,17 +13,28 @@ Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/register', [AuthController::class, 'registerPage'])->name('registerPage');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
-Route::prefix('tasks')->middleware('auth')->group(function(){
-    Route::get('/', [TaskController::class, 'tasks'])->name('tasks');
-
-    Route::get('/create', [TaskController::class, 'form'])->name('form');
-    Route::post('/', [TaskController::class, 'store'])->name('store');
+Route::middleware('auth')->group(function(){
+    Route::name('project.')->prefix('project')->group(function(){
+        Route::get('/', [ProjectController::class, 'index'])->name('index');
     
-    Route::get('/{task}', [TaskController::class, 'update'])->name('updatePage');
-    Route::post('/{task}', [TaskController::class, 'save'])->name('update');
+        Route::get('/create', [ProjectController::class, 'form'])->name('form');
+        Route::post('/', [ProjectController::class, 'store'])->name('store');
+        
+        Route::get('/{project}', [ProjectController::class, 'update'])->name('updatePage');
+        Route::post('/{project}', [ProjectController::class, 'save'])->name('update');
+        
+        Route::delete('/{project}', [ProjectController::class, 'delete'])->name('delete');
     
-    Route::delete('/{task}', [TaskController::class, 'delete'])->name('delete');
+        Route::post('/status/{project}/{code_status?}', [ProjectController::class, 'updateStatus'])->name('status');
+    
+        Route::get('/filter/{code_status}', [ProjectController::class, 'filterByStatus'])->name('filter');
+    });
+    
+    Route::resource('task', TaskController::class)->only('update', 'destroy');
+    Route::post('/task/{project}', [TaskController::class, 'create'])->name('task.create');
 });
+
+
 
 
 

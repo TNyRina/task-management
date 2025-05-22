@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -47,7 +49,16 @@ class User extends Authenticatable
         ];
     }
 
-    public function tasks(): HasMany{
-        return $this->hasMany(Task::class)->orderBy('deadline');
+    public function projects(): HasMany{
+        return $this->hasMany(Project::class)
+                    ->orderByRaw("CASE WHEN status = 2 THEN 1 ELSE 0 END, deadline IS NULL, deadline ASC")
+                    ->orderBy('deadline', 'ASC')
+                    ->orderByRaw("CASE 
+                        WHEN status = 0 THEN 1
+                        WHEN status = 1 THEN 2
+                        WHEN status = 2 THEN 3
+                        WHEN status = 3 THEN 4
+                        ELSE 5
+                    END");
     }
 }

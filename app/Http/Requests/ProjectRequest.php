@@ -2,10 +2,12 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\FailedValidationTrait;
 use Illuminate\Foundation\Http\FormRequest;
 
-class TaskRequest extends FormRequest
+class ProjectRequest extends FormRequest
 {
+    // use FailedValidationTrait;
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -24,7 +26,16 @@ class TaskRequest extends FormRequest
         return [
             'title' => ['required', 'string'],
             'description' => ['string', 'nullable'],
-            'completed' => ['nullable', 'boolean']
+            'start' => ['date','nullable'],
+            'deadline' => ['date','nullable'],
+            'play_at' => ['date','nullable'],
+        ];
+    }
+
+    public function messages(): array 
+    {
+        return [
+            'title.required' => 'Le titre est obligatoire'         
         ];
     }
 }
