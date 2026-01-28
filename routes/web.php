@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\GoogleController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -12,6 +13,12 @@ Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/register', [AuthController::class, 'registerPage'])->name('registerPage');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
+
+Route::middleware(['web'])->group(function (){
+    Route::get('/auth/google', [GoogleController::class, 'redirect'])->name('google.redirect');
+    Route::get('/auth/google/callback', [GoogleController::class, 'callback'])->name('google.callback');
+});
+
 
 Route::middleware('auth')->group(function(){
     Route::name('project.')->prefix('project')->group(function(){
