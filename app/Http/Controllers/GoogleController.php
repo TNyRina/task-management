@@ -28,7 +28,7 @@ class GoogleController extends Controller
                 'google_id'  => $googleUser->getId(),
                 'avatar'     => $googleUser->getAvatar(),
                 'provider'   => 'google',
-                'password'   => bcrypt(Str::random(16)),
+                'password'   => $user->password ?? bcrypt(Str::random(16)),
             ]
         );
         

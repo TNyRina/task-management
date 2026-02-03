@@ -1,3 +1,3 @@
-.form-auth{
-    width: 450px;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

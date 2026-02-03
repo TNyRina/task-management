@@ -6,19 +6,21 @@
     $value ??= '';
 @endphp
 
-<div @class(['form-group', $class])>
-    <label for="{{ $name }}" class="form-label"> {{ $label }} </label>
+<div class="flex flex-col">
+    {{-- <label for="{{ $name }}"> {{ $label }} </label> --}}
 
     @if ($type === 'textarea')
-        <textarea 
-            class="form-control my-3 @error($name) is-invalid @enderror" 
+        <textarea  
+            class="basis-[100%]"
+            placeholder="{{ $label }}"
             type="{{ $type }}"  
             name="{{ $name }}" 
             id="{{ $name }}"
             >{{ old($name, $value) }}</textarea>
     @else
         <input 
-            class="form-control my-3 @error($name) is-invalid @enderror" 
+            class="basis-[100%] rounded-md"
+            placeholder="{{ $label }}"
             type="{{ $type }}" 
             id="{{ $name }}" 
             name="{{ $name }}"  
@@ -26,7 +28,7 @@
     @endif
 
     @error($name)
-        <div class="invalid-feedback text-end my-3">
+        <div class="basis-[100%] text-red-700">
             {{ $message }}
         </div>
     @enderror
