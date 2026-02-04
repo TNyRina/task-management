@@ -64,4 +64,8 @@ class User extends Authenticatable
                         ELSE 5
                     END");
     }
+
+    public function tasks(): HasMany {
+        return $this->hasMany(Task::class);
+    }
 }

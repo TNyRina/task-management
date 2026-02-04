@@ -10,9 +10,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use PhpParser\Node\Expr\Cast\Bool_;
-use Ramsey\Uuid\Type\Integer;
-use SebastianBergmann\Diff\Diff;
 
 class Project extends Model
 {
@@ -42,7 +39,7 @@ class Project extends Model
     }
 
     public function Tasks(): HasMany {
-        return $this->hasMany(Task::class);
+        return $this->hasMany(SubTask::class);
     }
 
     public function getStatus(): String {

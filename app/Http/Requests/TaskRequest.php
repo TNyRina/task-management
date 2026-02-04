@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class TaskRequest extends FormRequest
 {
@@ -22,9 +23,16 @@ class TaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string'],
-            'description' => ['string', 'nullable'],
-            'completed' => ['nullable', 'boolean']
+            'title' => ['required', 'string', Rule::unique('tasks')->ignore($this->task)],
+            'description' => ['nullable', 'string'],
+            'completed' => ['boolean']
+        ];
+    }
+
+    public function messages(): array{
+        return [
+            'title.required' => 'Le nom du tâche est obligatoire',
+            'title.unique' => 'Ce tâche existe déjà',
         ];
     }
 }

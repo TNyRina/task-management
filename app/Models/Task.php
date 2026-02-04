@@ -13,13 +13,14 @@ class Task extends Model
     protected $table = 'tasks';
 
     protected $fillable = [
+        'user_id',
         'project_id',
         'title',
         'description',
         'completed',
     ];
 
-    public function project(): BelongsTo {
-        return $this->belongsTo(Project::class);
+    public function User(): BelongsTo {
+        return $this->belongsTo(User::class);
     }
 }

@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DailyTaskController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
@@ -37,4 +39,10 @@ Route::middleware('auth')->group(function(){
     
     Route::resource('task', TaskController::class)->only('update', 'destroy');
     Route::post('/task/{project}', [TaskController::class, 'create'])->name('task.create');
+
+    Route::resource('daily_task', DailyTaskController::class);
+
+    Route::name('dashboard.')->prefix('dashboard')->group(function(){
+        Route::get('/', [DashboardController::class, 'index'])->name('index');
+    });
 });

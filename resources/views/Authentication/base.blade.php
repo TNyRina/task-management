@@ -10,12 +10,6 @@
     <title>@yield('title') | Task Management by TNR</title>
 </head>
 <body>
-    @php
-        $route = request()->route()->getName();
-        $route = ($route == 'registerPage' ) ? 'loginPage': 'registerPage' ;
-        $btn_mssg = ($route == 'registerPage' ) ? 'S\'inscrire': 'Se connecter' ;
-    @endphp
-
     <div class="h-screen flex flex-col lg:flex-row ">
         <nav class="p-3 basis-[7%] bg-blue-800 items-center flex justify-start lg:flex-col md:flex-row ">
             <div class="w-[40px] items-center">

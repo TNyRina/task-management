@@ -11,7 +11,7 @@
 
     @if ($type === 'textarea')
         <textarea  
-            class="basis-[100%]"
+            class="basis-[100%] rounded-md"
             placeholder="{{ $label }}"
             type="{{ $type }}"  
             name="{{ $name }}" 

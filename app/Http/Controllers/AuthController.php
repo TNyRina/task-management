@@ -32,7 +32,7 @@ class AuthController extends Controller
     
             Auth::login($user);
 
-            return view('Projects.index',[
+            return view('dashboard.index',[
                 'user' => $user
             ]);
         } catch(Exception $e){
@@ -47,7 +47,7 @@ class AuthController extends Controller
         try{
             $credentials = $request->validated();
             if(Auth::attempt($credentials))
-                return view('Projects.index',[
+                return view('dashboard.index',[
                     'user' => Auth::user()
                 ]);
 

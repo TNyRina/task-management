@@ -34,8 +34,6 @@ class GoogleController extends Controller
         
         Auth::login($user);
 
-        return view('Projects.index',[
-            'user' => Auth::user()
-        ]);
+        return redirect()->route('dashboard.index');
     }
 }
