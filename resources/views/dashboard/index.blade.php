@@ -15,12 +15,14 @@
             </h3>
         </div>
         <div class="flex flex-row items-center justify-around gap-2 mb-5">
-            <p class="whitespace-nowrap">Voici votre tableau de bord.</p>
+            <p class="whitespace-nowrap">
+                Voici votre tableau de bord.
+            </p>
             <div class="flex-1 bg-black h-px opacity-20"></div>
         </div>
 
         <div >
-            @include('Tasks.daily_task')
+            @include('DailyTasks.daily_task')
         </div>
     </div>
 @endsection

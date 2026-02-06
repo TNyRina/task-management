@@ -23,7 +23,9 @@ class TaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string', Rule::unique('tasks')->ignore($this->task)],
+            'title' => ['required', 'string', Rule::unique('tasks')
+                ->where('user_id', auth()->id())
+                ->where('created_date', now()->toDateString())],
             'description' => ['nullable', 'string'],
             'completed' => ['boolean']
         ];
@@ -32,7 +34,7 @@ class TaskRequest extends FormRequest
     public function messages(): array{
         return [
             'title.required' => 'Le nom du tâche est obligatoire',
-            'title.unique' => 'Ce tâche existe déjà',
+            'title.unique' => 'Ce tâche existe déjà pour vos tâches journaliers',
         ];
     }
 }

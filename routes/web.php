@@ -38,9 +38,13 @@ Route::middleware('auth')->group(function(){
     });
     
     Route::resource('task', TaskController::class)->only('update', 'destroy');
+    
+    
+    
     Route::post('/task/{project}', [TaskController::class, 'create'])->name('task.create');
 
     Route::resource('daily_task', DailyTaskController::class);
+    Route::get('/task/completed/{id}', [DailyTaskController::class, 'completed'])->name('task.completed');
 
     Route::name('dashboard.')->prefix('dashboard')->group(function(){
         Route::get('/', [DashboardController::class, 'index'])->name('index');
