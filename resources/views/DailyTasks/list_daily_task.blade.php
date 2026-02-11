@@ -72,7 +72,7 @@
                                         Supprimer
                                     </button>
                                 </form>
-                                <a href="">
+                                <a href="{{ route('daily_task.edit', ['daily_task'=>$task]) }}">
                                     Modifer
                                 </a>
                             </div>

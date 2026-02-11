@@ -12,7 +12,7 @@
         
         <div class="flex-1 p-3 flex flex-col items-end bg-green-200 border-2 border-green-300 rounded-md  text-green-600 h-max">
             <span class="text-4xl">
-                {{ $user->tasks()->completed()->count() }}
+                {{ $user->tasks()->dailyCompleted()->count() }}
             </span>
             <span class="text-xs">
                 réalisées
@@ -22,7 +22,7 @@
 
         <div class="flex-1 p-3 flex flex-col items-end bg-blue-200 border-2 border-blue-300 rounded-md  text-blue-600 h-max">
             <span class="text-4xl">
-                {{ $user->tasks()->toDo()->count() }}
+                {{ $user->tasks()->dailyToDo()->count() }}
             </span>
             <span class="text-xs">
                 à faire
@@ -30,5 +30,5 @@
         </div>
     </div>
 
-    <livewire:progress-bar :user="$user"/>
+    <livewire:progress-bar/>
 </div>

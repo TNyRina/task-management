@@ -21,8 +21,14 @@
             <div class="flex-1 bg-black h-px opacity-20"></div>
         </div>
 
-        <div >
-            @include('DailyTasks.daily_task')
+        <div class="flex flex-col gap-4">
+            <div >
+                @include('DailyTasks.daily_task')
+            </div>
+            <div>
+                @include('dashboard.global_stat')
+            </div>
         </div>
+        
     </div>
 @endsection

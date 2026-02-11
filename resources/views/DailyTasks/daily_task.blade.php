@@ -1,5 +1,5 @@
 <div class="flex flex-col sm:flex-row gap-3">
-    <div class="sm:basis-[50%] lg:basis-[70%] bg-white p-3 rounded-md">
+    <div class="sm:basis-[50%] lg:basis-[70%] bg-white p-3 rounded-md shadow-sm">
         <h4 class="font-medium">
             Vos tâches d'aujourd'hui
         </h4>
@@ -16,7 +16,7 @@
     </div>
 
     
-    <div  class="sm:basis-[50%] lg:basis-[30%] bg-white p-3 rounded-md h-max">
+    <div  class="sm:basis-[50%] lg:basis-[30%] bg-white p-3 rounded-md h-max shadow-sm">
         <h4 class="font-medium">
             Ajouter votre tâche d'aujourd'hui
         </h4>

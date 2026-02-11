@@ -25,7 +25,8 @@ class TaskRequest extends FormRequest
         return [
             'title' => ['required', 'string', Rule::unique('tasks')
                 ->where('user_id', auth()->id())
-                ->where('created_date', now()->toDateString())],
+                ->where('created_date', now()->toDateString())
+                ->ignore($this->route('daily_task'))],
             'description' => ['nullable', 'string'],
             'completed' => ['boolean']
         ];
