@@ -6,7 +6,7 @@
     $value ??= '';
 @endphp
 
-<div class="flex flex-col">
+<div class="flex flex-col {{ $class }}">
     {{-- <label for="{{ $name }}"> {{ $label }} </label> --}}
 
     @if ($type === 'textarea')

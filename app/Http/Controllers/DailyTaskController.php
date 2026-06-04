@@ -25,7 +25,7 @@ class DailyTaskController extends Controller
 
         return to_route('dashboard.index')
         ->with([
-            'success' => 'La tâche '.$task->title.' été bien créée '
+            'success' => 'La tâche '.$task->title.' a été bien créée '
         ]);
     }
 
@@ -34,7 +34,7 @@ class DailyTaskController extends Controller
         $task['completed'] = !$task->completed;
         $task->save();
         
-        return redirect()->route('dashboard.index');
+        return to_route('dashboard.index');
     }
 
     public function destroy($daily_task){
@@ -50,7 +50,7 @@ class DailyTaskController extends Controller
 
     public function edit($task) {
         $task = Task::find($task);
-        return redirect()->route('dashboard.index')->with('task', $task);
+        return to_route('dashboard.index')->with('task', $task);
     }
 
     public function update(TaskRequest $request, $task_id){
@@ -59,6 +59,6 @@ class DailyTaskController extends Controller
         
         $current_task->update($task);
 
-        return redirect()->route('dashboard.index')->with('success', 'La tâche '.$task['title'].' à été bien modifiée');
+        return to_route('dashboard.index')->with('success', 'La tâche '.$task['title'].' à été bien modifiée');
     }
 }

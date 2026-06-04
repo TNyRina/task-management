@@ -16,7 +16,7 @@
     
         @include('navigation')
 
-        <div  class="md:basis-[93%] flex-1 overflow-auto">
+        <div  class="md:basis-[93%] flex-1 overflow-auto p-5">
             @yield('content')
         </div>
     </div>

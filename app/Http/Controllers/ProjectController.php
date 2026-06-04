@@ -39,12 +39,12 @@ class ProjectController extends Controller
         try{
             $project = $request->validated();
             $project['user_id'] = Auth::id();
+            $project['completed'] = false;
             $project = Project::create($project);
 
-            return to_route('project.index')
+            return redirect()->route('project.index')
             ->with([
-                'success' => 'The project '.$project->title.' has been created',
-                'user' => Auth::user()
+                'success' => 'Le project '.$project->title.'a été bien créée '
             ]);
         } catch(Exception $e){
             return back()->withErrors([

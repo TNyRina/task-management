@@ -17,12 +17,6 @@
 
     
     <div  class="sm:basis-[50%] lg:basis-[30%] bg-white p-3 rounded-md h-max shadow-sm">
-        <h4 class="font-medium">
-            Ajouter votre tâche d'aujourd'hui
-        </h4>
-        
-        <div class="flex-1 bg-black h-px opacity-20 my-2"></div>
-        
         @include('DailyTasks.add_daily_task')
     </div>
 </div>

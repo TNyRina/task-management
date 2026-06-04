@@ -5,9 +5,9 @@
     <div class="basis-[60%] bg-white p-3 shadow-sm rounded-md">
         <div class="flex justify-between">
             <h4 class="font-medium">
-                Evolution
+                Evolution pendant cette semaine
             </h4>
-            <ul class="flex gap-3">
+            {{-- <ul class="flex gap-3">
                 <li>
                     <a href="">Hebdomadaire</a>
                 </li>
@@ -17,7 +17,7 @@
                 <li>
                     <a href="">Annulle</a>
                 </li>
-            </ul>
+            </ul> --}}
         </div>
        
 
